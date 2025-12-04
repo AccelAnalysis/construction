@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Accel Analysis for Construction &amp; Trades</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="How Accel Analysis supports construction companies, GCs, builders, developers, and specialty trades with data-driven strategy, targeting, and GC–subcontractor matchmaking." />
+
+  <style>
+    /* --- Base Reset & Typography --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f6f7fb;
+      color: #1a1a1a;
+    }
+
+    body {
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* --- Layout --- */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* --- Header & Navigation --- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-logo {
+      height: 48px;
+      width: auto;
+    }
+
+    .nav-brand-text {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #555;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.92rem;
+    }
+
+    .nav-link {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #005b8f;
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid #005b8f;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #005b8f;
+      background: #ffffff;
+      transition: all 0.2s ease-out;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-cta:hover {
+      background: #005b8f;
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 91, 143, 0.25);
+      transform: translateY(-1px);
+    }
+
+    /* --- Hero --- */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("https://img1.wsimg.com/isteam/ip/0815fdc9-aafc-4fe1-99f8-dedc9ba0e23b/blob-02576cc.png/:/rs=w:1440,h:1440");
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.35);
+      transform: scale(1.02);
+    }
+
+    .hero::after {
+      /* subtle color overlay to match brand feel */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0%, rgba(0, 171, 193, 0.5) 0, transparent 60%),
+                  linear-gradient(120deg, rgba(0, 91, 143, 0.9), rgba(10, 31, 58, 0.9));
+      mix-blend-mode: soft-light;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: 4.5rem 0 4rem;
+    }
+
+    .hero-tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #d3e9ff;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      line-height: 1.15;
+      font-weight: 700;
+      margin: 0 0 1rem;
+    }
+
+    .hero-accent {
+      color: #66d1ff;
+    }
+
+    .hero-subtitle {
+      max-width: 560px;
+      font-size: 1.02rem;
+      color: #e9f3ff;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.85rem;
+      align-items: center;
+      margin-bottom: 1.75rem;
+      font-size: 0.9rem;
+      color: #c6ddff;
+    }
+
+    .hero-pill span {
+      position: relative;
+      padding-left: 1.3rem;
+    }
+
+    .hero-pill span::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #66d1ff;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 0.75rem 1.7rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #00a3e0, #0073b6);
+      color: #ffffff;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 10px 22px rgba(0, 134, 204, 0.45);
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, filter 0.15s ease-out;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 14px 30px rgba(0, 134, 204, 0.6);
+    }
+
+    .btn-secondary {
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #e6f0ff;
+      font-weight: 500;
+      border: 1px solid rgba(230, 240, 255, 0.4);
+      cursor: pointer;
+      font-size: 0.9rem;
+      backdrop-filter: blur(8px);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: background 0.15s ease-out, color 0.15s ease-out, transform 0.15s ease-out;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* --- Sections --- */
+    main {
+      background: #f6f7fb;
+    }
+
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    .section.alt {
+      background: #ffffff;
+    }
+
+    .section-header {
+      margin-bottom: 2.25rem;
+      text-align: left;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #777;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin: 0 0 0.75rem;
+      color: #162235;
+    }
+
+    .section-subtitle {
+      max-width: 640px;
+      font-size: 0.98rem;
+      color: #555;
+    }
+
+    /* --- Image Placeholder Component --- */
+    .image-placeholder {
+      border-radius: 14px;
+      border: 1px dashed #b6c3d8;
+      background: repeating-linear-gradient(
+        -45deg,
+        #f9fbff,
+        #f9fbff 10px,
+        #f0f4fb 10px,
+        #f0f4fb 20px
+      );
+      padding: 1.25rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-top: 1.25rem;
+    }
+
+    .image-placeholder-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b7a96;
+    }
+
+    .image-placeholder-desc {
+      font-size: 0.88rem;
+      color: #4c566f;
+    }
+
+    /* --- Three-column grid (Problems, Value Props, Use Cases) --- */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.75rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(13, 27, 62, 0.06);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.04);
+      padding: 1.4rem 1.4rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .card-header-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #7c8baa;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #182235;
+    }
+
+    .card-body {
+      font-size: 0.92rem;
+      color: #555;
+    }
+
+    .card-list {
+      margin: 0.35rem 0 0;
+      padding-left: 1.1rem;
+      font-size: 0.9rem;
+      color: #4b5568;
+    }
+
+    .card-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* --- Two-column feature sections --- */
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .two-column.reverse {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr);
+    }
+
+    .feature-tag {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #0073b6;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-title {
+      font-size: 1.4rem;
+      color: #111827;
+      margin: 0 0 0.6rem;
+    }
+
+    .feature-subtitle {
+      font-size: 0.96rem;
+      color: #4b5563;
+      margin-bottom: 0.9rem;
+    }
+
+    .feature-list {
+      margin: 0.5rem 0 0.4rem;
+      padding-left: 1.1rem;
+      font-size: 0.93rem;
+      color: #4b5563;
+    }
+
+    .feature-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-meta {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    /* --- Process Steps --- */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.75rem;
+    }
+
+    .process-step {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(13, 27, 62, 0.06);
+      padding: 1.3rem 1.3rem 1.2rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+      position: relative;
+    }
+
+    .process-step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #005b8f;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .process-step-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+      margin-bottom: 0.45rem;
+      color: #111827;
+    }
+
+    .process-step-body {
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    /* --- Use Cases --- */
+    .use-cases {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.75rem;
+    }
+
+    .use-case-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #111827;
+    }
+
+    .pill-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.1rem 0.7rem;
+      border-radius: 999px;
+      background: #edf5ff;
+      color: #005b8f;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    /* --- CTA --- */
+    .cta-section {
+      text-align: center;
+    }
+
+    .cta-box {
+      background: radial-gradient(circle at top left, #e6f5ff, #f8fafc);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 2.2rem 1.75rem 2rem;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    .cta-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.7rem;
+      color: #0f172a;
+    }
+
+    .cta-subtitle {
+      max-width: 560px;
+      margin: 0 auto 1.7rem;
+      font-size: 0.97rem;
+      color: #4b5563;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.9rem;
+    }
+
+    .cta-note {
+      margin-top: 1.1rem;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    /* --- Footer --- */
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1.5rem 0 1.75rem;
+      background: #ffffff;
+      font-size: 0.82rem;
+      color: #6b7280;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 900px) {
+      .two-column,
+      .two-column.reverse,
+      .grid-3,
+      .process-steps,
+      .use-cases {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-inner {
+        padding: 3.5rem 0 3.25rem;
+      }
+
+      .nav-links {
+        display: none; /* simple mobile behavior for now */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.97rem;
+      }
+
+      .cta-box {
+        padding: 1.9rem 1.4rem 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= Header ================= -->
+  <header class="site-header">
+    <div class="container nav">
+      <div class="nav-left">
+        <img
+          src="https://img1.wsimg.com/isteam/ip/0815fdc9-aafc-4fe1-99f8-dedc9ba0e23b/blob-f3ca1db.png/:/rs=w:331,h:400,cg:true,m/cr=w:331,h:400/qt=q:95"
+          alt="Accel Analysis, LLC Logo"
+          class="nav-logo"
+        />
+        <div class="nav-brand-text">
+          Accel Analysis, LLC<br />
+          <span style="font-weight:600;">Clarity. Strategy. Execution.</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#who-we-serve" class="nav-link">Who We Serve</a>
+        <a href="#builder-radar" class="nav-link">Builder &amp; Developer Radar</a>
+        <a href="#gc-sub-matching" class="nav-link">GC–Sub Matchmaking</a>
+        <a href="#process" class="nav-link">How It Works</a>
+        <a href="#cta" class="nav-cta">Book a Discovery</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= Hero ================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-tagline">Industry Sector &mdash; Construction &amp; Trades</div>
+      <h1 class="hero-title">
+        Data-Driven Gr
