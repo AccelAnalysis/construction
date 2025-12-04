@@ -778,9 +778,43 @@
 
         <div>
           <!-- Image Placeholder: Builder & Developer Radar visualization -->
-  <img src="https://img1.wsimg.com/isteam/ip/0815fdc9-aafc-4fe1-99f8-dedc9ba0e23b/Construction-Hand%20Shake.png/:/rs=w:1440,h:1440" alt="Construction site overview" style="border-radius:14px; width:100%; height:auto;">
-      </div>
-    </section>
+<div style="
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid #b6c3d8;
+  position:relative;
+">
+  <video id="bounceVideo1"
+         src="https://img1.wsimg.com/isteam/ip/0815fdc9-aafc-4fe1-99f8-dedc9ba0e23b/video/CityClouds.mp4"
+         autoplay
+         muted
+         playsinline
+         style="width:100%; display:block;">
+  </video>
+</div>
+
+<script>
+(function() {
+  const vid = document.getElementById('bounceVideo1');
+  let reverse = false;
+
+  // Restart forward or backward
+  vid.addEventListener("ended", () => {
+    reverse = !reverse;
+
+    if (reverse) {
+      vid.playbackRate = -1;        // reverse direction
+      vid.currentTime = vid.duration; // jump to end
+    } else {
+      vid.playbackRate = 1;         // forward direction
+      vid.currentTime = 0;          // jump to start
+    }
+
+    vid.play();
+  });
+})();
+</script>
+
 
           <!-- Image Placeholder: Data-rich company profile -->
     <img src="https://img1.wsimg.com/isteam/ip/0815fdc9-aafc-4fe1-99f8-dedc9ba0e23b/Construction-Hand%20Shake.png/:/rs=w:1440,h:1440" alt="Construction site overview" style="border-radius:14px; width:100%; height:auto;">
